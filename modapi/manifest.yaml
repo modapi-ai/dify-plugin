@@ -1,0 +1,35 @@
+version: 0.1.0
+type: plugin
+author: modapi
+name: modapi
+repo: https://github.com/modapi-ai/dify-plugin
+contact: support@modapi.ai
+label:
+  en_US: ModAPI
+description:
+  en_US: Chat and embedding models from OpenAI, Anthropic, Google, xAI and more through one ModAPI API key. Context sizes, output limits, prices, and vision and tool support come filled in.
+icon: icon.png
+tags:
+  - productivity
+created_at: 2026-11-20T00:00:00Z
+resource:
+  memory: 268435456
+  permission: {}
+plugins:
+  models:
+    - provider/modapi.yaml
+meta:
+  version: 0.0.1
+  arch:
+    - amd64
+    - arm64
+  runner:
+    language: python
+    version: "3.12"
+    entrypoint: main
+  minimum_dify_version: 1.14.2
+privacy: PRIVACY.md
+verified: false
+network:
+  domains:
+    - modapi.ai

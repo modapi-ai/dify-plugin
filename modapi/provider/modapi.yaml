@@ -1,0 +1,78 @@
+provider: modapi
+label:
+  en_US: ModAPI
+description:
+  en_US: Chat and embedding models from OpenAI, Anthropic, Google, xAI and more through one ModAPI key, with context sizes, output limits, prices, and vision and tool support filled in.
+icon_small:
+  en_US: icon.png
+icon_large:
+  en_US: icon.png
+background: "#F5F7FA"
+help:
+  title:
+    en_US: Get an API key from ModAPI
+  url:
+    en_US: https://modapi.ai/keys
+supported_model_types:
+  - llm
+  - text-embedding
+configurate_methods:
+  - predefined-model
+  - customizable-model
+provider_credential_schema:
+  credential_form_schemas:
+    - variable: api_key
+      label:
+        en_US: API Key
+      type: secret-input
+      required: true
+      placeholder:
+        en_US: Enter your ModAPI API key
+model_credential_schema:
+  model:
+    label:
+      en_US: Model ID
+    placeholder:
+      en_US: The exact model ID from modapi.ai/pricing, for example gpt-4.1-nano
+  credential_form_schemas:
+    - variable: api_key
+      label:
+        en_US: API Key
+      type: secret-input
+      required: true
+      placeholder:
+        en_US: Enter your ModAPI API key
+    - variable: context_size
+      label:
+        en_US: Context size
+      type: text-input
+      required: false
+      default: "32768"
+      placeholder:
+        en_US: Maximum input tokens of the model
+    - variable: max_tokens
+      show_on:
+        - variable: __model_type
+          value: llm
+      label:
+        en_US: Maximum output tokens
+      type: text-input
+      required: false
+      default: "4096"
+      placeholder:
+        en_US: Upper limit for the max_tokens setting
+models:
+  llm:
+    predefined:
+      - "models/llm/*.yaml"
+    position: "models/llm/_position.yaml"
+  text_embedding:
+    predefined:
+      - "models/text_embedding/*.yaml"
+    position: "models/text_embedding/_position.yaml"
+extra:
+  python:
+    provider_source: provider/modapi.py
+    model_sources:
+      - "models/llm/llm.py"
+      - "models/text_embedding/text_embedding.py"
